@@ -1,0 +1,300 @@
+---
+import Layout from '@/layouts/DefaultLayout.astro';
+import { Image } from 'astro:assets';
+import svgline from '@/images/line.svg';
+import { ButtonComponent } from '@/components/shadcn-components/ButtonComponent';
+
+function getAge(dateString) {
+	let today = new Date();
+	let birthDate = new Date(dateString);
+	let age = today.getFullYear() - birthDate.getFullYear();
+	let m = today.getMonth() - birthDate.getMonth();
+	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+		age--;
+	}
+	return age;
+}
+---
+
+<Layout title='Plop'>
+	<main>
+		<div class='content'>
+			<div class='title scroll-item'>
+				<h1>Hey there</h1>
+				<h1>I'm <span class='linear-gradient-text'>plop</span></h1>
+				<!-- <p>Just a {getAge('2010, 05, 28')} year old guy making websites just because I have nothing better to do.</p> -->
+				<p>I make websites, and uh that's it :]</p>
+				<ButtonComponent variant='default' link='/contact' text='Contact Me' />
+			</div>
+
+			<div class='who-i-am scroll-item'>
+				<h3>Based in the UK</h3>
+				<p>
+					Just a quick intro; I've been programming for {getAge('2021, 07, 13')} years programming in multiple languages with different frameworks (AstroJS
+					on top). I'm quite busy with school at the moment, but don't hesitate to contact me.
+				</p>
+			</div>
+
+			<div class='journey'>
+				<div class='journey-intro'>
+					<h2>My <span class='linear-gradient-text'>Journey</span></h2>
+					<p>Let's take a deep dive...</p>
+				</div>
+				<div id='journey-part-1' class='journey-part'>
+					<div class='journey-part-date'>13<small>/</small>07<small>/</small>2021</div>
+					<div class='journey-part-title'>The Start</div>
+					<div class='journey-part-content'>
+						<div class='journey-part-content-text'>
+							I started learning python by following a <a href='https://youtu.be/rfscVS0vtbw?si=XlVJqOuFA4yBHlSO' class='normal'>course</a> (thanks
+							Mike!) which really help with learning the basics of programming. I really enjoyed going through the course and learning new skills.
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class='line'>
+				<Image src={svgline} alt='' class='scroll-item' id='line' />
+			</div>
+
+			<div class='timeline'>
+				<div class='timeline-wrapper'>
+					<svg viewBox='0 0 900 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
+						<path
+							d='M9.89998 6C9.43671 8.28224 7.41896 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.41896 0 9.43671 1.71776 9.89998 4H445.1C445.563 1.71776 447.581 0 450 0C452.419 0 454.437 1.71776 454.9 4H890.1C890.563 1.71776 892.581 0 895 0C897.761 0 900 2.23858 900 5C900 7.76142 897.761 10 895 10C892.581 10 890.563 8.28224 890.1 6H454.9C454.437 8.28224 452.419 10 450 10C447.581 10 445.563 8.28224 445.1 6H9.89998Z'
+							fill='var(--_grey)'></path>
+						<mask id='mask0_0_1' style='mask-type:alpha' maskUnits='userSpaceOnUse' x='0' y='0' width='900' height='10'>
+							<path
+								d='M9.89998 6C9.43671 8.28224 7.41896 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.41896 0 9.43671 1.71776 9.89998 4H445.1C445.563 1.71776 447.581 0 450 0C452.419 0 454.437 1.71776 454.9 4H890.1C890.563 1.71776 892.581 0 895 0C897.761 0 900 2.23858 900 5C900 7.76142 897.761 10 895 10C892.581 10 890.563 8.28224 890.1 6H454.9C454.437 8.28224 452.419 10 450 10C447.581 10 445.563 8.28224 445.1 6H9.89998Z'
+								fill='var(--_text)'></path>
+						</mask>
+						<g mask='url(#mask0_0_1)'>
+							<rect class='mask' y='-49' height='99' fill='var(--_text)'></rect>
+						</g>
+					</svg>
+
+					<div class='labels'>
+						<span>Who I Am</span>
+						<span>How I Became A Dev</span>
+						<span>My Projects</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	const mainTl = gsap.timeline();
+	let scrollItems = gsap.utils.toArray('.scroll-item');
+	let timelineMask = document.querySelector('.mask');
+
+	mainTl.to(scrollItems, {
+		xPercent: -150,
+		ease: 'none',
+	});
+	mainTl.to(scrollItems, {
+		yPercent: -800,
+		ease: 'none',
+	});
+
+	ScrollTrigger.create({
+		animation: mainTl,
+		trigger: '.content',
+		pin: true,
+		scrub: 0.75,
+		end: '+=4000',
+	});
+
+	// const journeyTl = gsap.timeline();
+
+	// journeyTl.to(
+	// 	'.journey .journey-intro',
+	// 	{
+	// 		translateY: '0px',
+	// 		rotateX: '0deg',
+	// 		opacity: 1,
+	// 		ease: 'sine.in',
+	// 	},
+	// 	'>',
+	// );
+
+	// journeyTl.to(
+	// 	'#journey-part-1',
+	// 	{
+	// 		opacity: 1,
+	// 	},
+	// 	'>',
+	// );
+
+	const timelineTl = gsap.timeline();
+
+	timelineTl.to(timelineMask, { width: '50%', duration: 1, ease: 'none' });
+	// timelineTl.add(journeyTl, 0);
+	timelineTl.to(timelineMask, { width: '75%', duration: 1, ease: 'none' });
+	timelineTl.to(timelineMask, { width: '100%', duration: 1, ease: 'none' });
+
+	ScrollTrigger.create({
+		animation: timelineTl,
+		scrub: 0.75,
+	});
+
+	const whoTl = gsap.timeline({
+		scrollTrigger: {
+			trigger: '.who-i-am',
+			start: 'center left',
+			scrub: 0.75,
+		},
+	});
+	whoTl.to('.who-i-am', {
+		translateY: '0px',
+		rotateX: '0deg',
+		opacity: 1,
+		ease: 'sine.inOut',
+	});
+</script>
+
+<style lang='scss'>
+	main {
+		width: 100%;
+		height: 100%;
+	}
+
+	.content {
+		min-width: 100vw;
+		width: 400vw;
+		height: 100dvh;
+		position: relative;
+		display: flex;
+		gap: 15%;
+
+		.title {
+			margin: 25vh 0 0 5vw;
+
+			h1 {
+				&:not(:has(span)) {
+					position: relative;
+
+					&::after {
+						content: '👋';
+					}
+				}
+			}
+
+			p {
+				color: var(--_text-faint);
+				margin: 32px 0;
+				width: 100%;
+			}
+		}
+
+		.who-i-am {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			width: 30vw;
+			height: 20vh;
+			position: absolute;
+			left: 80vw;
+			top: 30vh;
+			opacity: 0;
+			transform: translateY(80px) rotateX(35deg);
+		}
+
+		.journey {
+			height: 300dvh;
+			width: 100dvw;
+			display: flex;
+			position: absolute;
+			top: 30vh;
+			padding: 32px;
+
+			.journey-intro {
+				opacity: 0;
+				transform: translateY(80px) rotateX(35deg);
+				width: max-content;
+				height: min-content;
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+				margin: -5% 5%;
+			}
+
+			.journey-part {
+				opacity: 0;
+				display: flex;
+				flex-direction: column;
+				width: 30%;
+				gap: 8px;
+
+				.journey-part-date {
+					color: var(--_primary);
+					font-size: 220%;
+
+					small {
+						font-size: 1rem;
+						margin: 0 0.5rem;
+					}
+				}
+
+				.journey-part-title {
+					font-size: 160%;
+				}
+
+				.journey-part-content {
+					.journey-part-content-text {
+						font-size: 100%;
+					}
+				}
+			}
+		}
+
+		.line {
+			width: max-content;
+			height: 100%;
+
+			#line {
+				z-index: -1;
+				position: relative;
+				top: 55%;
+				left: -80%;
+			}
+		}
+
+		.timeline {
+			position: absolute;
+			top: 10%;
+			height: auto;
+			width: 100dvw;
+			display: flex;
+			justify-content: center;
+
+			.timeline-wrapper {
+				width: 50vw;
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 16px;
+
+				svg {
+					width: 50vw;
+
+					.mask {
+						width: 1%;
+					}
+				}
+
+				.labels {
+					width: calc(100% + 4rem);
+					display: flex;
+					justify-content: space-between;
+				}
+			}
+		}
+	}
+</style>
