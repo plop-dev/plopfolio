@@ -23,7 +23,7 @@ function getAge(dateString) {
 				<h1>Hey there</h1>
 				<h1>I'm <span class='linear-gradient-text'>plop</span></h1>
 				<!-- <p>Just a {getAge('2010, 05, 28')} year old guy making websites just because I have nothing better to do.</p> -->
-				<p>I make websites, and uh that's it :]</p>
+				<p>I make websites, and uh that's it :)</p>
 				<ButtonComponent variant='default' link='/contact' text='Contact Me' />
 			</div>
 
@@ -46,7 +46,7 @@ function getAge(dateString) {
 					<div class='journey-part-content'>
 						<div class='journey-part-content-text'>
 							I started learning python by following a <a href='https://youtu.be/rfscVS0vtbw?si=XlVJqOuFA4yBHlSO' class='normal'>course</a> (thanks
-							Mike!) which really help with learning the basics of programming. I really enjoyed going through the course and learning new skills.
+							Mike!) which really helped with learning the basics of programming.
 						</div>
 					</div>
 				</div>
@@ -56,7 +56,7 @@ function getAge(dateString) {
 				<Image src={svgline} alt='' class='scroll-item' id='line' />
 			</div>
 
-			<div class='timeline'>
+			<!-- <div class='timeline'>
 				<div class='timeline-wrapper'>
 					<svg viewBox='0 0 900 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
 						<path
@@ -78,37 +78,37 @@ function getAge(dateString) {
 						<span>My Projects</span>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</main>
 </Layout>
 
 <script>
-	import { gsap } from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	// import { gsap } from 'gsap';
+	// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-	gsap.registerPlugin(ScrollTrigger);
+	// gsap.registerPlugin(ScrollTrigger);
 
-	const mainTl = gsap.timeline();
-	let scrollItems = gsap.utils.toArray('.scroll-item');
-	let timelineMask = document.querySelector('.mask');
+	// const mainTl = gsap.timeline();
+	// let scrollItems = gsap.utils.toArray('.scroll-item');
+	// let timelineMask = document.querySelector('.mask');
 
-	mainTl.to(scrollItems, {
-		xPercent: -150,
-		ease: 'none',
-	});
-	mainTl.to(scrollItems, {
-		yPercent: -800,
-		ease: 'none',
-	});
+	// mainTl.to(scrollItems, {
+	// 	xPercent: -150,
+	// 	ease: 'none',
+	// });
+	// mainTl.to(scrollItems, {
+	// 	yPercent: -800,
+	// 	ease: 'none',
+	// });
 
-	ScrollTrigger.create({
-		animation: mainTl,
-		trigger: '.content',
-		pin: true,
-		scrub: 0.75,
-		end: '+=4000',
-	});
+	// ScrollTrigger.create({
+	// 	animation: mainTl,
+	// 	trigger: '.content',
+	// 	pin: true,
+	// 	scrub: 0.75,
+	// 	end: '+=4000',
+	// });
 
 	// const journeyTl = gsap.timeline();
 
@@ -131,31 +131,31 @@ function getAge(dateString) {
 	// 	'>',
 	// );
 
-	const timelineTl = gsap.timeline();
+	// const timelineTl = gsap.timeline();
 
-	timelineTl.to(timelineMask, { width: '50%', duration: 1, ease: 'none' });
-	// timelineTl.add(journeyTl, 0);
-	timelineTl.to(timelineMask, { width: '75%', duration: 1, ease: 'none' });
-	timelineTl.to(timelineMask, { width: '100%', duration: 1, ease: 'none' });
+	// timelineTl.to(timelineMask, { width: '50%', duration: 1, ease: 'none' });
+	// // timelineTl.add(journeyTl, 0);
+	// timelineTl.to(timelineMask, { width: '75%', duration: 1, ease: 'none' });
+	// timelineTl.to(timelineMask, { width: '100%', duration: 1, ease: 'none' });
 
-	ScrollTrigger.create({
-		animation: timelineTl,
-		scrub: 0.75,
-	});
+	// ScrollTrigger.create({
+	// 	animation: timelineTl,
+	// 	scrub: 0.75,
+	// });
 
-	const whoTl = gsap.timeline({
-		scrollTrigger: {
-			trigger: '.who-i-am',
-			start: 'center left',
-			scrub: 0.75,
-		},
-	});
-	whoTl.to('.who-i-am', {
-		translateY: '0px',
-		rotateX: '0deg',
-		opacity: 1,
-		ease: 'sine.inOut',
-	});
+	// const whoTl = gsap.timeline({
+	// 	scrollTrigger: {
+	// 		trigger: '.who-i-am',
+	// 		start: 'center left',
+	// 		scrub: 0.75,
+	// 	},
+	// });
+	// whoTl.to('.who-i-am', {
+	// 	translateY: '0px',
+	// 	rotateX: '0deg',
+	// 	opacity: 1,
+	// 	ease: 'sine.inOut',
+	// });
 </script>
 
 <style lang='scss'>
@@ -166,14 +166,15 @@ function getAge(dateString) {
 
 	.content {
 		min-width: 100vw;
-		width: 400vw;
+		max-width: 100vw;
 		height: 100dvh;
 		position: relative;
 		display: flex;
+		flex-direction: column;
 		gap: 15%;
 
 		.title {
-			margin: 25vh 0 0 5vw;
+			margin: 15vh 0 0 3vw;
 
 			h1 {
 				&:not(:has(span)) {
@@ -198,11 +199,14 @@ function getAge(dateString) {
 			gap: 8px;
 			width: 30vw;
 			height: 20vh;
-			position: absolute;
-			left: 80vw;
-			top: 30vh;
-			opacity: 0;
-			transform: translateY(80px) rotateX(35deg);
+			position: relative;
+			left: 3vw;
+			top: 30%;
+			// position: absolute;
+			// left: 80vw;
+			// top: 30vh;
+			// opacity: 0;
+			// transform: translateY(80px) rotateX(35deg);
 		}
 
 		.journey {
@@ -214,8 +218,8 @@ function getAge(dateString) {
 			padding: 32px;
 
 			.journey-intro {
-				opacity: 0;
-				transform: translateY(80px) rotateX(35deg);
+				// opacity: 0;
+				// transform: translateY(80px) rotateX(35deg);
 				width: max-content;
 				height: min-content;
 				display: flex;
@@ -225,7 +229,7 @@ function getAge(dateString) {
 			}
 
 			.journey-part {
-				opacity: 0;
+				// opacity: 0;
 				display: flex;
 				flex-direction: column;
 				width: 30%;
@@ -254,14 +258,14 @@ function getAge(dateString) {
 		}
 
 		.line {
-			width: max-content;
+			// width: max-content;
 			height: 100%;
 
 			#line {
 				z-index: -1;
 				position: relative;
-				top: 55%;
-				left: -80%;
+				top: -50vh;
+				left: 10%;
 			}
 		}
 
