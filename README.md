@@ -1,3 +1,3 @@
 # plopfolio
 
-> Portfolio website for plop_dev
+Portfolio website for plop_dev
