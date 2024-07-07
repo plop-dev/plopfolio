@@ -1,6 +1,6 @@
 ---
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { ButtonComponent } from '@/components/shadcn-components/ButtonComponent';
+import { ButtonComponent } from '@/components/ui/ButtonComponent';
 import { Image } from 'astro:assets';
 import logo from '@/images/plop.png';
 ---
@@ -9,11 +9,12 @@ import logo from '@/images/plop.png';
 	<div class='items'>
 		<a class='logo'>
 			<Image src={logo} alt='' />
-			<span>plop</span>
+			<span>maxime</span>
 		</a>
 		<div class='links'>
-			<ButtonComponent variant='ghost' text='Home' link='#top' client:visible />
-			<ButtonComponent variant='ghost' text='About me' link='#about' client:visible />
+			<ButtonComponent variant='ghost' text='Home' link='/#top' client:visible />
+			<ButtonComponent variant='ghost' text='About me' link='/#about' client:visible />
+			<ButtonComponent variant='ghost' text='Archive' link='/archive' client:visible />
 			<ButtonComponent variant='ghost' text='Contact' link='/contact' client:visible />
 		</div>
 		<div class='theme-toggle'>
