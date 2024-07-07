@@ -19,6 +19,8 @@
     --radialSecondaryAccent: radial-gradient(var(--_secondary), var(--_accent));
 
     --navbarHeight: calc(62px + 1px);
+
+    --transition: 0.3s ease;
 }
 :root.dark {
     --_text: #dadada;
@@ -86,6 +88,14 @@ small {
 
 body {
     background-color: var(--_background);
+}
+
+main {
+    top: var(--navbarHeight);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 3rem 4rem;
 }
 
 p {

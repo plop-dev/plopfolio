@@ -2,9 +2,9 @@
 import Layout from '@/layouts/DefaultLayout.astro';
 import { Image } from 'astro:assets';
 import svgline from '@/images/line.svg';
-import { ButtonComponent } from '@/components/shadcn-components/ButtonComponent';
+import { ButtonComponent } from '@/components/ui/ButtonComponent';
 
-function getAge(dateString) {
+function getYear(dateString: string) {
 	let today = new Date();
 	let birthDate = new Date(dateString);
 	let age = today.getFullYear() - birthDate.getFullYear();
@@ -16,12 +16,12 @@ function getAge(dateString) {
 }
 ---
 
-<Layout title='Plop'>
+<Layout title='Maxime C'>
 	<main>
 		<div class='content'>
 			<div class='title scroll-item'>
 				<h1>Hey there</h1>
-				<h1>I'm <span class='linear-gradient-text'>plop</span></h1>
+				<h1>I'm <span class='linear-gradient-text'>maxime</span></h1>
 				<!-- <p>Just a {getAge('2010, 05, 28')} year old guy making websites just because I have nothing better to do.</p> -->
 				<p>I make websites, and uh that's it :)</p>
 				<ButtonComponent variant='default' link='/contact' text='Contact Me' />
@@ -30,7 +30,7 @@ function getAge(dateString) {
 			<div class='who-i-am scroll-item'>
 				<h3>Based in the UK</h3>
 				<p>
-					Just a quick intro; I've been programming for {getAge('2021, 07, 13')} years programming in multiple languages with different frameworks (AstroJS
+					Just a quick intro; I've been programming for {getYear('2021, 07, 13')} years programming in multiple languages with different frameworks (AstroJS
 					on top). I'm quite busy with school at the moment, but don't hesitate to contact me.
 				</p>
 			</div>
@@ -83,87 +83,9 @@ function getAge(dateString) {
 	</main>
 </Layout>
 
-<script>
-	// import { gsap } from 'gsap';
-	// import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-	// gsap.registerPlugin(ScrollTrigger);
-
-	// const mainTl = gsap.timeline();
-	// let scrollItems = gsap.utils.toArray('.scroll-item');
-	// let timelineMask = document.querySelector('.mask');
-
-	// mainTl.to(scrollItems, {
-	// 	xPercent: -150,
-	// 	ease: 'none',
-	// });
-	// mainTl.to(scrollItems, {
-	// 	yPercent: -800,
-	// 	ease: 'none',
-	// });
-
-	// ScrollTrigger.create({
-	// 	animation: mainTl,
-	// 	trigger: '.content',
-	// 	pin: true,
-	// 	scrub: 0.75,
-	// 	end: '+=4000',
-	// });
-
-	// const journeyTl = gsap.timeline();
-
-	// journeyTl.to(
-	// 	'.journey .journey-intro',
-	// 	{
-	// 		translateY: '0px',
-	// 		rotateX: '0deg',
-	// 		opacity: 1,
-	// 		ease: 'sine.in',
-	// 	},
-	// 	'>',
-	// );
-
-	// journeyTl.to(
-	// 	'#journey-part-1',
-	// 	{
-	// 		opacity: 1,
-	// 	},
-	// 	'>',
-	// );
-
-	// const timelineTl = gsap.timeline();
-
-	// timelineTl.to(timelineMask, { width: '50%', duration: 1, ease: 'none' });
-	// // timelineTl.add(journeyTl, 0);
-	// timelineTl.to(timelineMask, { width: '75%', duration: 1, ease: 'none' });
-	// timelineTl.to(timelineMask, { width: '100%', duration: 1, ease: 'none' });
-
-	// ScrollTrigger.create({
-	// 	animation: timelineTl,
-	// 	scrub: 0.75,
-	// });
-
-	// const whoTl = gsap.timeline({
-	// 	scrollTrigger: {
-	// 		trigger: '.who-i-am',
-	// 		start: 'center left',
-	// 		scrub: 0.75,
-	// 	},
-	// });
-	// whoTl.to('.who-i-am', {
-	// 	translateY: '0px',
-	// 	rotateX: '0deg',
-	// 	opacity: 1,
-	// 	ease: 'sine.inOut',
-	// });
-</script>
+<script></script>
 
 <style lang='scss'>
-	main {
-		width: 100%;
-		height: 100%;
-	}
-
 	.content {
 		min-width: 100vw;
 		max-width: 100vw;
@@ -174,8 +96,6 @@ function getAge(dateString) {
 		gap: 15%;
 
 		.title {
-			margin: 15vh 0 0 3vw;
-
 			h1 {
 				&:not(:has(span)) {
 					position: relative;
@@ -200,7 +120,6 @@ function getAge(dateString) {
 			width: 30vw;
 			height: 20vh;
 			position: relative;
-			left: 3vw;
 			top: 40%;
 			// position: absolute;
 			// left: 80vw;
