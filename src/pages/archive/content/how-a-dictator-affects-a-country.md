@@ -54,7 +54,7 @@ Thank you for listening.
 
 1. **Q: How do dictators typically gain pwoer in a country?**
 
-A: Some dictators manipulate elections to greatly increase their chance of gaining power through a "legal" way. If done properly the dictator doesn't ruin his reputation as corrupt. Additionally, Dictators can also use military force existing governments.Once in power they often consolidate control by manipulating legal systems to create laws like grant them power. Installing face through violence and intimidation mitigates any chance of there being any opposition.
+A: Some dictators manipulate elections to greatly increase their chance of gaining power through a "legal" way. If done properly the dictator doesn't ruin his reputation as corrupt. Additionally, Dictators can also use military force existing governments. Once in power they often consolidate control by manipulating legal systems to create laws like grant them power. Installing face through violence and intimidation mitigates any chance of there being any opposition.
 
 <br>
 
@@ -72,7 +72,7 @@ A: Dictators can create tensions with other countries resulting in possible econ
 
 4. **Q: What are the psychological effects of living under a dictatorship on the populace?**
 
-A: Living under a dictatorship can lead to heightened fear anxiety and a sense of helplessness. Faye and this rose can be caused by the constant surveillance censorship and the threat of punishment caused by the government. Over time people Will become wary of showing the true opinions even with friends or family Which prevents creativity innovation and overall mental workview.
+A: Living under a dictatorship can lead to heightened fear, anxiety, and a sense of helplessness. This can be caused by the constant surveillance censorship and the threat of punishment caused by the government. Over time people Will become wary of showing the true opinions even with friends or family Which prevents creativity innovation and overall mental work view.
 
 <br>
 
