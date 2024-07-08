@@ -1,21 +1,42 @@
 ---
 interface Props {
 	title: string;
-	content: string;
+	description: string;
+	tags: string;
 	date: string;
+	url: string;
 }
 
-const { title, content, date } = Astro.props;
+const { title, description, tags, date, url } = Astro.props;
+
+const nthNumber = (number: number) => {
+	return number > 0 ? ['th', 'st', 'nd', 'rd'][(number > 3 && number < 21) || number % 10 > 3 ? 0 : number % 10] : '';
+};
+
+const formattedDate =
+	new Date(date).getUTCDate() +
+	nthNumber(new Date(date).getUTCDate()) +
+	' ' +
+	new Date(date).toLocaleDateString('en-GB', {
+		year: 'numeric',
+		month: 'long',
+	});
 ---
 
-<div class='archive-item border border-secondary/150'>
-	<h2>{title}</h2>
-	<p>{content}</p>
-	<span>{date}</span>
+<div class='archive-item border border-primary/20'>
+	<a href={url}>
+		<small>{formattedDate}</small>
+		<div class='wrapper'>
+			<h4>{title}</h4>
+			<p>{description}</p>
+		</div>
+	</a>
 </div>
 
 <style lang='scss'>
 	.archive-item {
+		cursor: pointer;
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -24,14 +45,41 @@ const { title, content, date } = Astro.props;
 		height: 100%;
 		background-color: var(--secondary);
 		padding: 1rem;
-		margin: 1rem;
 		border-radius: 1rem;
 		box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 		transition: var(--transition);
 
+		small {
+			display: flex;
+			justify-content: end;
+			width: 100%;
+		}
+
+		.wrapper {
+			cursor: pointer;
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			row-gap: 1rem;
+
+			p {
+				text-overflow: ellipsis;
+				max-width: 100%;
+				overflow: scroll;
+			}
+		}
+
 		&:hover {
 			transform: scale(1.025);
 			box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.5);
+		}
+
+		&:first-child {
+			margin-top: 2rem;
+		}
+		&:last-child {
+			margin-bottom: 2rem;
 		}
 	}
 </style>
