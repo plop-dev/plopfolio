@@ -28,7 +28,7 @@ const { title, viewTransitions } = Astro.props;
 		<Navbar transition:persist />
 		<slot />
 		<script is:inline>
-			document.addEventListener('astro:after-swap', () => {
+			function checkTheme() {
 				const getThemePreference = () => {
 					if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
 						return localStorage.getItem('theme');
@@ -45,7 +45,10 @@ const { title, viewTransitions } = Astro.props;
 					});
 					observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 				}
-			});
+			}
+
+			document.addEventListener('astro:after-swap', checkTheme);
+			document.addEventListener('DOMContentLoaded', checkTheme);
 		</script>
 	</body>
 </html>

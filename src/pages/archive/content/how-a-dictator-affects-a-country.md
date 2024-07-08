@@ -22,7 +22,7 @@ By definition, a dictatorship is a form of government, where one person effectiv
 
 <br>
 
-However, manipulating a whole population isn't always effective since violating human rights cannot be ignored by those affected. In the workplace, workers are forced to work in inhumane conditions that may take their lives. In Uzbekistan, the cotton industry heavily impacted adults and children with forced labour whilst being neglected and violated. Without a voice or opinion, they cannot avoid this fate and are helpless.
+Human rights are also a significant concern in dictatorships. In the workplace, workers are forced to work in inhumane conditions that may take their lives. In Uzbekistan, the cotton industry heavily impacted adults and children with forced labour whilst being neglected and violated. Without a voice or opinion, they cannot avoid this fate and are helpless.
 
 <br>
 
@@ -41,3 +41,41 @@ To stand by and ignore is to be complicit in the suffering of millions. Shin Don
 <br>
 
 Thank you for listening.
+
+<br>
+<br>
+
+---
+<br>
+
+### QnA
+
+<br>
+
+1. **Q: How do dictators typically gain pwoer in a country?**
+
+A: Some dictators manipulate elections to greatly increase their chance of gaining power through a "legal" way. If done properly the dictator doesn't ruin his reputation as corrupt. Additionally, Dictators can also use military force existing governments.Once in power they often consolidate control by manipulating legal systems to create laws like grant them power. Installing face through violence and intimidation mitigates any chance of there being any opposition.
+
+<br>
+
+2. **Q: How do you dictators manipulate and control social media?**
+
+A: State controlled media can spread propaganda and censor any media source that could potentially threaten their position of power. By restricting access to independent news sources and promoting state-approved content, dictators ensure that social media becomes a tool for reinforcing their power and silencing opposition.
+
+<br>
+
+3. **Q: What impact do dictators have on international relations?**
+
+A: Dictators can create tensions with other countries resulting in possible economic sanctions in isolation there may also be prone to aggressive behaviour like terrorism which impacts global stability and peace. They can also carry out military invasions to asserts dominance.
+
+<br>
+
+4. **Q: What are the psychological effects of living under a dictatorship on the populace?**
+
+A: Living under a dictatorship can lead to heightened fear anxiety and a sense of helplessness. Faye and this rose can be caused by the constant surveillance censorship and the threat of punishment caused by the government. Over time people Will become wary of showing the true opinions even with friends or family Which prevents creativity innovation and overall mental workview.
+
+<br>
+
+5. **Q: What role does propaganda play in sustaining a dictatorship?**
+
+A: Propaganda allows dictators to shape public opinion and to justify the regime's actions. It can be prevalent in social media which legitimises the repressive measures that are in place to provide stability within the country.
