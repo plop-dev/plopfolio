@@ -52,7 +52,7 @@ Thank you for listening.
 
 <br>
 
-1. **Q: How do dictators typically gain pwoer in a country?**
+1. **Q: How do dictators typically gain power in a country?**
 
 A: Some dictators manipulate elections to greatly increase their chance of gaining power through a "legal" way. If done properly the dictator doesn't ruin his reputation as corrupt. Additionally, Dictators can also use military force existing governments. Once in power they often consolidate control by manipulating legal systems to create laws like grant them power. Installing face through violence and intimidation mitigates any chance of there being any opposition.
 
