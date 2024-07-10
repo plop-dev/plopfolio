@@ -1,4 +1,6 @@
 ---
+import SpeedInsights from '@vercel/speed-insights/astro';
+
 import { ViewTransitions } from 'astro:transitions';
 import '@/styles/shadcnui.css';
 import '@/styles/global.scss';
@@ -24,7 +26,9 @@ const { title, viewTransitions } = Astro.props;
 		<ViewTransitions />
 	</head>
 	<body>
+		<SpeedInsights />
 		<Navbar transition:persist />
+
 		<slot />
 		<script is:inline>
 			function checkTheme() {
