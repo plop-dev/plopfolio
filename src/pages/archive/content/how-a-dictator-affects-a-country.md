@@ -1,7 +1,7 @@
 ---
 layout: ../../../layouts/ArchiveLayout.astro
 title: "How a dictator affects a country"
-description: "A speech about the negative affects of dictators on a country"
+description: "A speech about the negative affects of a dictator on a country."
 tags: ["speech", "research"]
 date: 2024-07-08
 ---

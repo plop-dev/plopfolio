@@ -42,6 +42,7 @@ const formattedDate =
 		align-items: center;
 		justify-content: center;
 		width: 100%;
+		max-width: 100%;
 		height: 100%;
 		background-color: var(--secondary);
 		padding: 1rem;
@@ -49,24 +50,33 @@ const formattedDate =
 		box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 		transition: var(--transition);
 
-		small {
-			display: flex;
-			justify-content: end;
-			width: 100%;
-		}
+		a {
+			max-width: 100%;
+			min-width: 0;
 
-		.wrapper {
-			cursor: pointer;
-			position: relative;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			row-gap: 1rem;
+			small {
+				display: flex;
+				justify-content: end;
+				width: 100%;
+			}
 
-			p {
-				text-overflow: ellipsis;
-				max-width: 100%;
-				overflow: scroll;
+			.wrapper {
+				cursor: pointer;
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				row-gap: 1rem;
+
+				p {
+					text-overflow: ellipsis;
+					max-width: 100%;
+					overflow: scroll;
+
+					&::-webkit-scrollbar {
+						width: 0;
+					}
+				}
 			}
 		}
 

@@ -1,9 +1,5 @@
 ---
 import Layout from '@/layouts/DefaultLayout.astro';
-import { Image } from 'astro:assets';
-import logo from '@/images/plop.png';
-
-import { ButtonComponent } from '@/components/ui/ButtonComponent';
 import ArchiveItem from '@/components/ArchiveItem.astro';
 
 const posts = await Astro.glob('./content/*.{md,mdx}');
@@ -15,8 +11,8 @@ const posts = await Astro.glob('./content/*.{md,mdx}');
 			<h1>Welcome To Archive</h1>
 			<p class='text-foreground/70 text-center'>A collection of random content</p>
 		</div>
-		<div class='recent flex flex-col gap-y-4 min-w-[625px]'>
-			<div class='archive-item-ctn'>
+		<div class='recent flex flex-col gap-y-4 max-w-[900px] min-w-[400px]'>
+			<div class='archive-item-ctn flex flex-col gap-y-4'>
 				{
 					posts.map(post => (
 						<ArchiveItem
