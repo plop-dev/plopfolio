@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/DefaultLayout.astro';
 import { Image } from 'astro:assets';
-import svgline from '@/images/line.svg';
+import line from '@/images/line.svg?raw';
 import { ButtonComponent } from '@/components/ui/ButtonComponent';
 
 function getYear(dateString: string) {
@@ -19,12 +19,18 @@ function getYear(dateString: string) {
 <Layout title='Maxime C'>
 	<main>
 		<div class='content'>
-			<div class='title scroll-item'>
-				<h1>Hey there</h1>
-				<h1>I'm <span class='linear-gradient-text'>maxime</span></h1>
-				<!-- <p>Just a {getAge('2010, 05, 28')} year old guy making websites just because I have nothing better to do.</p> -->
-				<p>I make websites, and uh that's it :)</p>
-				<ButtonComponent variant='default' link='/contact' text='Contact Me' />
+			<div class='front-page'>
+				<div class='title scroll-item'>
+					<h1>Hey there</h1>
+					<h1>I'm <span class='linear-gradient-text'><a>m</a><a>a</a><a>x</a><a>i</a><a>m</a><a>e</a></span></h1>
+					<!-- <p>Just a {getAge('2010, 05, 28')} year old guy making websites just because I have nothing better to do.</p> -->
+					<p>I make websites, and uh that's it :)</p>
+					<ButtonComponent variant='default' link='/contact' text='Contact Me' />
+				</div>
+
+				<div class='line'>
+					<Fragment set:html={line} id='line' />
+				</div>
 			</div>
 
 			<div class='who-i-am scroll-item'>
@@ -34,55 +40,86 @@ function getYear(dateString: string) {
 					AstroJS). I'm quite busy with school at the moment, but don't hesitate to contact me.
 				</p>
 			</div>
-
-			<div class='line'>
-				<Image src={svgline} alt='' class='scroll-item' id='line' />
-			</div>
 		</div>
 	</main>
 </Layout>
 
-<script></script>
+<script>
+	import anime from 'animejs/lib/anime.es.js';
+
+	document.addEventListener('astro:page-load', () => {
+		let lineDrawing = anime({
+			targets: '.line path',
+			strokeDashoffset: [anime.setDashoffset, 0],
+			easing: 'easeInCubic',
+			duration: 2000,
+			begin: function (anim) {
+				//document.querySelector('path').setAttribute("stroke", "black");
+				//document.querySelector('path').setAttribute("fill", "none");
+			},
+			complete: function (anim) {
+				//document.querySelector('path').setAttribute("fill", "yellow");
+			},
+			autoplay: false,
+		});
+		lineDrawing.play();
+
+		let textAnim = anime({
+			targets: '.title .linear-gradient-text a',
+			translateY: 30,
+			delay: anime.stagger(100),
+			autoplay: false,
+		});
+		console.log(textAnim);
+		textAnim.play();
+	});
+</script>
 
 <style lang='scss'>
 	.content {
 		min-width: 100vw;
 		max-width: 100vw;
-		height: 100dvh;
+		height: auto;
 		position: relative;
 		display: flex;
 		flex-direction: column;
 		gap: 15%;
 
-		.line {
-			position: absolute;
+		.front-page {
+			height: 100dvh;
+			width: 100%;
 
-			#line {
-				z-index: -1;
-				position: relative;
-				top: 35vh;
-				left: 10%;
-			}
-		}
+			.line {
+				position: absolute;
+				bottom: 40%;
+				left: 200px;
+				width: 1750px;
 
-		.title {
-			position: relative;
-			top: 10%;
-
-			h1 {
-				&:not(:has(span)) {
+				#line {
+					z-index: -1;
 					position: relative;
-
-					&::after {
-						content: '👋';
-					}
 				}
 			}
 
-			p {
-				color: var(--_text-faint);
-				margin: 32px 0;
-				width: 100%;
+			.title {
+				position: relative;
+				top: 5%;
+
+				h1 {
+					&:not(:has(span)) {
+						position: relative;
+
+						&::after {
+							content: '👋';
+						}
+					}
+				}
+
+				p {
+					color: var(--_text-faint);
+					margin: 32px 0;
+					width: 100%;
+				}
 			}
 		}
 
