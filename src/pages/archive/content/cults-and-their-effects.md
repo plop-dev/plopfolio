@@ -91,3 +91,5 @@ A: To use the example of the Family International again, after 56 years and coun
 5. **Q: What tactics do cults use to emotionally manipulate their members?**
 
 A: Cults use a wide variety of manipulative tactics, but some include emotional blackmail, where guilt, shame or fear is used to control members behaviour through threats. An example is limiting contact with members' families, leaving them willing to do anything just to talk to them again. Controlling the flow of information from the inside world is also a key tactic, making it difficult to cling on to what the world was before, and making it harder to fight against their ideology, as it is all they have ever known.
+
+*Credit: EnyCode*
