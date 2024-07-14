@@ -20,20 +20,25 @@ function getYear(dateString: string) {
 	<main>
 		<div class='content'>
 			<div class='front-page'>
-				<div class='title scroll-item'>
+				<div class='title'>
 					<h1>Hey there</h1>
-					<h1>I'm <span class='linear-gradient-text'><a>m</a><a>a</a><a>x</a><a>i</a><a>m</a><a>e</a></span></h1>
+					<h1>
+						I'm <span class='linear-gradient-text'>maxime <span class='linear-gradient-text glow'>maxime</span></span>
+					</h1>
 					<!-- <p>Just a {getAge('2010, 05, 28')} year old guy making websites just because I have nothing better to do.</p> -->
 					<p>I make websites, and uh that's it :)</p>
 					<ButtonComponent variant='default' link='/contact' text='Contact Me' />
 				</div>
 
 				<div class='line'>
-					<Fragment set:html={line} id='line' />
+					<div class='line-ctn'>
+						<Fragment set:html={line} />
+						<div class='line-ctn glow'><Fragment set:html={line} /></div>
+					</div>
 				</div>
 			</div>
 
-			<div class='who-i-am scroll-item'>
+			<div class='who-i-am'>
 				<h3>Based in the UK</h3>
 				<p>
 					Just a quick intro; I've been programming for {getYear('2021, 07, 13')} years programming in multiple languages with different frameworks (mostly
@@ -46,32 +51,42 @@ function getYear(dateString: string) {
 
 <script>
 	import anime from 'animejs/lib/anime.es.js';
+	import gsap from 'gsap';
 
 	document.addEventListener('astro:page-load', () => {
-		let lineDrawing = anime({
+		let lineDrawing = anime.timeline();
+		lineDrawing.add({
 			targets: '.line path',
 			strokeDashoffset: [anime.setDashoffset, 0],
 			easing: 'easeInCubic',
-			duration: 2000,
-			begin: function (anim) {
-				//document.querySelector('path').setAttribute("stroke", "black");
-				//document.querySelector('path').setAttribute("fill", "none");
-			},
-			complete: function (anim) {
-				//document.querySelector('path').setAttribute("fill", "yellow");
-			},
+			duration: 1500,
 			autoplay: false,
+		});
+		lineDrawing.add({
+			targets: '.line > *',
+			opacity: 0,
+			easing: 'linear',
+			duration: 75,
+		});
+		lineDrawing.add({
+			targets: '.line > *',
+			opacity: 1,
+			easing: 'linear',
+			duration: 75,
+		});
+		lineDrawing.add({
+			targets: '.line > *',
+			opacity: 0,
+			easing: 'linear',
+			duration: 75,
+		});
+		lineDrawing.add({
+			targets: '.line > *',
+			opacity: 1,
+			easing: 'linear',
+			duration: 75,
 		});
 		lineDrawing.play();
-
-		let textAnim = anime({
-			targets: '.title .linear-gradient-text a',
-			translateY: 30,
-			delay: anime.stagger(100),
-			autoplay: false,
-		});
-		console.log(textAnim);
-		textAnim.play();
 	});
 </script>
 
@@ -95,9 +110,17 @@ function getYear(dateString: string) {
 				left: 200px;
 				width: 1750px;
 
-				#line {
+				.line-ctn:not(.glow) {
 					z-index: -1;
 					position: relative;
+
+					.line-ctn.glow {
+						position: absolute;
+						top: 0;
+						left: 0;
+						opacity: 0.5;
+						filter: blur(6px);
+					}
 				}
 			}
 
@@ -111,6 +134,18 @@ function getYear(dateString: string) {
 
 						&::after {
 							content: '👋';
+						}
+					}
+					& .linear-gradient-text {
+						position: relative;
+						z-index: 100;
+
+						span.glow {
+							z-index: -1;
+							position: absolute;
+							left: 0;
+							opacity: 0.4;
+							filter: blur(10px);
 						}
 					}
 				}
@@ -127,7 +162,7 @@ function getYear(dateString: string) {
 			display: flex;
 			flex-direction: column;
 			gap: 8px;
-			width: 30vw;
+			width: 40vw;
 			height: 20vh;
 			position: relative;
 			top: 40%;
