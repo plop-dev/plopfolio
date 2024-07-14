@@ -51,42 +51,50 @@ function getYear(dateString: string) {
 
 <script>
 	import anime from 'animejs/lib/anime.es.js';
-	import gsap from 'gsap';
 
 	document.addEventListener('astro:page-load', () => {
-		let lineDrawing = anime.timeline();
-		lineDrawing.add({
+		let blinking = anime.timeline({ loop: true, autoplay: true });
+
+		anime({
 			targets: '.line path',
 			strokeDashoffset: [anime.setDashoffset, 0],
-			easing: 'easeInCubic',
-			duration: 1500,
-			autoplay: false,
+			easing: 'easeInQuad',
+			duration: 1000,
+			autoplay: true,
+		}).finished.then(() => {
+			blinking.add({
+				duration: 600,
+			});
+
+			blinking.add({
+				targets: '.line > *',
+				opacity: 0.35,
+				easing: 'linear',
+				duration: 65,
+			});
+			blinking.add({
+				targets: '.line > *',
+				opacity: 1,
+				easing: 'linear',
+				duration: 65,
+			});
+			blinking.add({
+				targets: '.line > *',
+				opacity: 0.35,
+				easing: 'linear',
+				duration: 65,
+			});
+			blinking.add({
+				targets: '.line > *',
+				opacity: 1,
+				easing: 'linear',
+				duration: 65,
+			});
+
+			blinking.add({
+				duration: 1000,
+			});
 		});
-		lineDrawing.add({
-			targets: '.line > *',
-			opacity: 0,
-			easing: 'linear',
-			duration: 75,
-		});
-		lineDrawing.add({
-			targets: '.line > *',
-			opacity: 1,
-			easing: 'linear',
-			duration: 75,
-		});
-		lineDrawing.add({
-			targets: '.line > *',
-			opacity: 0,
-			easing: 'linear',
-			duration: 75,
-		});
-		lineDrawing.add({
-			targets: '.line > *',
-			opacity: 1,
-			easing: 'linear',
-			duration: 75,
-		});
-		lineDrawing.play();
 	});
 </script>
 
