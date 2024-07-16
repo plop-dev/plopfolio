@@ -55,28 +55,69 @@ function getYear(dateString: string) {
 
 <script>
 	import anime from 'animejs/lib/anime.es.js';
-	import { createAnimationScope } from 'astro:transitions';
 
 	const createBlinkingAnimation = (
 		targets: HTMLElement | NodeList | string,
-		variant: 'quick' | 'slow' = 'slow',
-		loop: boolean = true,
-		autoplay: boolean = true,
+		options: { speed?: 'quick' | 'slow'; variant?: 'normal' | 'off'; loop?: boolean; autoplay?: boolean } = {
+			speed: 'slow',
+			variant: 'normal',
+			loop: false,
+			autoplay: false,
+		},
 	) => {
-		return anime
-			.timeline({ loop, autoplay })
-			.add({
-				duration: variant === 'quick' ? 0 : 600,
-			})
-			.add({
-				targets: targets,
-				opacity: [0.35, 1, 0.35, 1],
-				easing: 'linear',
-				duration: 260,
-			})
-			.add({
-				duration: variant === 'quick' ? 300 : 1000,
-			});
+		switch (options.variant) {
+			case 'normal':
+				return anime
+					.timeline(options)
+					.add({
+						duration: options?.speed === 'quick' ? 0 : 600,
+					})
+					.add({
+						targets: targets,
+						opacity: [0.35, 1, 0.35, 1],
+						easing: 'linear',
+						duration: 260,
+					})
+					.add({
+						duration: options?.speed === 'quick' ? 300 : 1000,
+					});
+
+			case 'off':
+			// return anime.timeline(options).add({
+			// 	targets: targets,
+			// 	opacity: [0, 1, 0, 1],
+			// 	easing: 'linear',
+			// 	duration: 2000,
+			// });
+			// .add({
+			// 	duration: 1000,
+			// })
+			// .add({
+			// 	targets: targets,
+			// 	opacity: [0.35, 1, 0.35, 1],
+			// 	easing: 'linear',
+			// 	duration: 260,
+			// })
+			// .add({
+			// 	duration: 1000,
+			// });
+
+			default:
+				return anime
+					.timeline(options)
+					.add({
+						duration: options?.speed === 'quick' ? 0 : 600,
+					})
+					.add({
+						targets: targets,
+						opacity: [0.35, 1, 0.35, 1],
+						easing: 'linear',
+						duration: 260,
+					})
+					.add({
+						duration: options?.speed === 'quick' ? 300 : 1000,
+					});
+		}
 	};
 
 	document.addEventListener('astro:page-load', () => {
@@ -87,22 +128,20 @@ function getYear(dateString: string) {
 			duration: 1000,
 			autoplay: true,
 		}).finished.then(() => {
-			const blinkingLine = createBlinkingAnimation('.line > *');
+			const blinkingLine = createBlinkingAnimation('.line > *', { autoplay: true, speed: 'slow', loop: true, variant: 'normal' });
 			blinkingLine.play();
 		});
 
-		document.querySelectorAll<HTMLElement>('.title h1 .linear-gradient-text div').forEach(ch => {
-			const blinkingText = createBlinkingAnimation(ch);
+		// document.querySelectorAll<HTMLElement>('.title h1 .linear-gradient-text div').forEach(ch => {
+		// 	const blinkingText = createBlinkingAnimation(ch, { variant: 'off', autoplay: false, loop: false });
 
-			ch.addEventListener('mouseenter', event => {
-				blinkingText.restart();
-			});
+		// 	ch.addEventListener('mouseenter', event => {
+		// 		blinkingText.restart();
+		// 	});
 
-			ch.addEventListener('mouseleave', event => {
-				blinkingText.pause();
-				ch.style.opacity = '1';
-			});
-		});
+		// 	// ch.addEventListener('mouseleave', event => {
+		// 	// });
+		// });
 	});
 </script>
 
@@ -167,6 +206,15 @@ function getYear(dateString: string) {
 							left: 0;
 							opacity: 0.4;
 							filter: blur(10px);
+						}
+
+						& > div:not(span.glow div) {
+							transition: 0.5s ease;
+						}
+
+						&:hover > div:not(span.glow div) {
+							// color: var(--_background) !important;
+							background: var(--_background);
 						}
 					}
 				}
