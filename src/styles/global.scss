@@ -114,3 +114,8 @@ a.normal {
     text-decoration: none;
     color: var(--_accent);
 }
+
+.scroll-anim {
+    opacity: 0;
+    transform: translateY(80px) rotateX(35deg);
+}
