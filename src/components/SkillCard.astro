@@ -1,0 +1,76 @@
+---
+interface Props {
+	skill: string;
+	iconName: string;
+	progress: string;
+}
+
+const { skill, iconName, progress } = Astro.props;
+const iconPath = `../images/icons/${iconName}.svg?raw`;
+
+const icon = await import(/* @vite-ignore */ iconPath);
+---
+
+<div class='item-wrapper'>
+	<div class='item bg-secondary/30'>
+		<div class='logo'>
+			<Fragment set:html={icon.default} />
+		</div>
+		<span class='skill'>{skill}</span>
+		<div class='progress'></div>
+	</div>
+</div>
+
+<style lang='scss' define:vars={{ progress }}>
+	.item-wrapper {
+		margin-top: 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		align-items: center;
+		width: 100%;
+
+		.item {
+			display: grid;
+			gap: 2rem;
+			width: 60%;
+			grid-template-columns: 0.25fr 1fr 5fr;
+			grid-template-rows: 1fr;
+			border-radius: var(--radius);
+			padding: 1rem 1.5rem;
+			box-shadow: var(--box-shadow);
+
+			& > * {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.logo {
+				height: 40px;
+			}
+
+			.progress {
+				width: 100%;
+				background-color: var(--_primary-faint);
+				transition: width 1s ease-in-out;
+				border-radius: var(--radius);
+				position: relative;
+				// height: 50%;
+				// margin: auto 0;
+
+				&::before {
+					top: 0;
+					left: 0;
+					position: absolute;
+					content: '';
+					width: var(--progress);
+					height: 100%;
+					background-color: var(--_primary);
+					transition: width 1s ease-in-out;
+					border-radius: var(--radius);
+				}
+			}
+		}
+	}
+</style>

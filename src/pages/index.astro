@@ -1,8 +1,12 @@
 ---
 import Layout from '@/layouts/DefaultLayout.astro';
-import { Image } from 'astro:assets';
-import line from '@/images/line.svg?raw';
 import { ButtonComponent } from '@/components/ui/ButtonComponent';
+
+import { Image } from 'astro:assets';
+
+import line from '@/images/line.svg?raw';
+import jsIcon from '@/images/icons/js.svg?raw';
+import SkillCard from '@/components/SkillCard.astro';
 
 function getYear(dateString: string) {
 	let today = new Date();
@@ -56,15 +60,11 @@ function getYear(dateString: string) {
 			<h3>Skills</h3>
 			<p>Here are some of my skills that I've worked on throughout some of my projects:</p>
 
-			<div class='item-wrapper'>
-				<div class='item'>
-					<div class='logo'></div>
-					<span class='skill'>JavaScript</span>
-					<div class='progress'>
-						<div class='bar'></div>
-					</div>
-				</div>
-			</div>
+			<SkillCard skill='JavaScript' iconName='js' progress='85%' />
+			<SkillCard skill='Python' iconName='python' progress='75%' />
+			<SkillCard skill='CSS' iconName='css' progress='75%' />
+			<SkillCard skill='C#/.NET' iconName='cs' progress='35%' />
+			<SkillCard skill='React' iconName='react' progress='5%' />
 		</div>
 	</main>
 </Layout>
@@ -257,38 +257,6 @@ function getYear(dateString: string) {
 
 		p {
 			max-width: 70%;
-		}
-
-		.item-wrapper {
-			margin-top: 2rem;
-			display: flex;
-			flex-direction: column;
-			gap: 2rem;
-			align-items: center;
-			width: 100%;
-
-			.item {
-				display: flex;
-				gap: 2rem;
-				width: 60%;
-				background-color: hsl(var(--secondary));
-				border-radius: var(--radius);
-				padding: 1.5rem 0;
-
-				.progress {
-					display: flex;
-					width: 100%;
-					height: 100%;
-
-					.bar {
-						width: 100%;
-						height: 100%;
-						background-color: var(--_primary);
-						transition: width 1s ease-in-out;
-						border-radius: var(--radius);
-					}
-				}
-			}
 		}
 	}
 </style>
