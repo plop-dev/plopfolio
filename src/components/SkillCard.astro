@@ -17,9 +17,33 @@ const icon = await import(/* @vite-ignore */ iconPath);
 			<Fragment set:html={icon.default} />
 		</div>
 		<span class='skill'>{skill}</span>
-		<div class='progress'></div>
+		<div class='progress' data-progress={progress}>
+			<div class='bar'></div>
+		</div>
 	</div>
 </div>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	document.querySelectorAll<HTMLElement>('.item-wrapper .item .progress .bar').forEach((bar, index) => {
+		const progress = bar.parentElement?.getAttribute('data-progress');
+
+		gsap.to(bar, {
+			width: `${progress}`,
+			ease: 'power1.inOut',
+			scrollTrigger: {
+				trigger: bar,
+				scrub: 1.5,
+				start: 'top 80%',
+				end: 'bottom 50%',
+			},
+		});
+	});
+</script>
 
 <style lang='scss' define:vars={{ progress }}>
 	.item-wrapper {
@@ -53,21 +77,17 @@ const icon = await import(/* @vite-ignore */ iconPath);
 			.progress {
 				width: 100%;
 				background-color: var(--_primary-faint);
-				transition: width 1s ease-in-out;
 				border-radius: var(--radius);
 				position: relative;
-				// height: 50%;
-				// margin: auto 0;
 
-				&::before {
+				.bar {
 					top: 0;
 					left: 0;
 					position: absolute;
-					content: '';
-					width: var(--progress);
+					// width: var(--progress);
+					width: 0;
 					height: 100%;
 					background-color: var(--_primary);
-					transition: width 1s ease-in-out;
 					border-radius: var(--radius);
 				}
 			}

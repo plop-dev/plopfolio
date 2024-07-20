@@ -66,6 +66,14 @@ function getYear(dateString: string) {
 			<SkillCard skill='C#/.NET' iconName='cs' progress='35%' />
 			<SkillCard skill='React' iconName='react' progress='5%' />
 		</div>
+
+		<div class='projects'>
+			<h3>Projects</h3>
+			<p>
+				I've worked on various different projects throughout the past {getYear('2021, 07, 13')} years. Here are some of my recent/most challenging projects
+				I've worked on:
+			</p>
+		</div>
 	</main>
 </Layout>
 
@@ -201,7 +209,7 @@ function getYear(dateString: string) {
 				& .linear-gradient-text {
 					cursor: default;
 					position: relative;
-					z-index: 100;
+					z-index: 10;
 
 					span.glow {
 						z-index: -1;
@@ -256,7 +264,18 @@ function getYear(dateString: string) {
 		margin-top: 25vh;
 
 		p {
-			max-width: 70%;
+			width: 40vw;
+		}
+	}
+
+	.projects {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin-top: 25vh;
+
+		p {
+			width: 40vw;
 		}
 	}
 </style>
