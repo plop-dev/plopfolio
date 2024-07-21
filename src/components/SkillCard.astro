@@ -6,15 +6,12 @@ interface Props {
 }
 
 const { skill, iconName, progress } = Astro.props;
-const iconPath = `../images/icons/${iconName}.svg?raw`;
-
-const icon = await import(/* @vite-ignore */ iconPath);
 ---
 
 <div class='item-wrapper'>
 	<div class='item bg-secondary/30'>
 		<div class='logo'>
-			<Fragment set:html={icon.default} />
+			<img src={`/icons/${iconName}.svg`} />
 		</div>
 		<span class='skill'>{skill}</span>
 		<div class='progress' data-progress={progress}>
