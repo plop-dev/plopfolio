@@ -5,8 +5,10 @@ import { ButtonComponent } from '@/components/ui/ButtonComponent';
 import { Image } from 'astro:assets';
 
 import line from '@/images/line.svg?raw';
-import jsIcon from '@/images/icons/js.svg?raw';
 import SkillCard from '@/components/SkillCard.astro';
+
+import { ProjectCarousel } from '@/components/ProjectCarousel';
+import ProjectItem from '@/components/ProjectItem.astro';
 
 function getYear(dateString: string) {
 	let today = new Date();
@@ -50,9 +52,9 @@ function getYear(dateString: string) {
 			</p>
 
 			<p>
-				I'm a self-taught developer, but I've been learning a lot since I started. I'm currently learning React, NextJS (soon), and TailwindCSS. Making
-				production-quality websites is a priority for me, like thinking about accessibility and responsiveness as well as performance across
-				devices/browsers.
+				I'm a self-taught developer (proudly a course and bootcamp free developer), but I've been learning a lot since I started. I'm currently learning
+				React, NextJS (soon), and TailwindCSS. Making production-quality websites is a priority for me, like thinking about accessibility and
+				responsiveness as well as performance across devices/browsers.
 			</p>
 		</div>
 
@@ -64,15 +66,39 @@ function getYear(dateString: string) {
 			<SkillCard skill='Python' iconName='python' progress='75%' />
 			<SkillCard skill='CSS' iconName='css' progress='75%' />
 			<SkillCard skill='C#/.NET' iconName='cs' progress='35%' />
-			<SkillCard skill='React' iconName='react' progress='5%' />
 		</div>
 
 		<div class='projects'>
 			<h3>Projects</h3>
 			<p>
 				I've worked on various different projects throughout the past {getYear('2021, 07, 13')} years. Here are some of my recent/most challenging projects
-				I've worked on:
+				I've done:
 			</p>
+
+			<div class='project-ctn'>
+				<ProjectItem
+					title='apple-but-better'
+					description="This is probably one of my best websites in terms of design and animation. It was for a computer science project at school I had to make. I really liked Apple's website for their iPhone 15 Pro so I decided to replicate it but add my own twist; so here it is."
+					media={[
+						{
+							src: '/src/images/projects/apple-but-better/front.png',
+							alt: 'apple-but-better',
+							type: 'image',
+						},
+						{
+							src: '/src/images/projects/apple-but-better/carousel.png',
+							alt: 'apple-but-better',
+							type: 'image',
+						},
+						{
+							src: '/src/images/projects/apple-but-better/camera.png',
+							alt: 'apple-but-better',
+							type: 'image',
+						},
+					]}
+					url='https://apple-but-better.vercel.app'
+				/>
+			</div>
 		</div>
 	</main>
 </Layout>
@@ -276,6 +302,14 @@ function getYear(dateString: string) {
 
 		p {
 			width: 40vw;
+		}
+
+		.project-ctn {
+			display: flex;
+			flex-direction: column;
+			row-gap: 4rem;
+			margin: 4rem auto 0 auto;
+			width: 85%;
 		}
 	}
 </style>
