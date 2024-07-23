@@ -22,6 +22,7 @@
     --navbarHeight: calc(62px + 1px);
 
     --transition: 0.3s ease;
+    --box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 }
 :root.dark {
     --_text: #dadada;
@@ -113,4 +114,9 @@ p {
 a.normal {
     text-decoration: none;
     color: var(--_accent);
+}
+
+.scroll-anim {
+    opacity: 0;
+    transform: translateY(80px) rotateX(35deg);
 }

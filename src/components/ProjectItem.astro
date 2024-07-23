@@ -1,0 +1,38 @@
+---
+import { ProjectCarousel } from './ProjectCarousel';
+
+interface Props {
+	title: string;
+	description: string;
+	media: ProjectMedia[];
+	url: string;
+}
+
+const { title, description, media, url } = Astro.props;
+---
+
+<div class='project'>
+	<div class='content mt-auto mb-auto'>
+		<div class='title'>
+			<a href={url} target='_blank' rel='noopener noreferrer'><h4 class='font-bold'>/{title}</h4></a>
+		</div>
+		<br />
+		<div class='description'>
+			{description}
+		</div>
+	</div>
+	<div class='media'>
+		<ProjectCarousel media={media} url={url} client:load />
+	</div>
+
+	<style lang='scss'>
+		.project {
+			border-radius: var(--radius);
+			padding: 2rem;
+			display: grid;
+			grid-template-columns: 2fr 3fr;
+			grid-template-rows: auto;
+			column-gap: 8rem;
+		}
+	</style>
+</div>
