@@ -3,6 +3,7 @@ import Layout from '@/layouts/DefaultLayout.astro';
 import { ButtonComponent } from '@/components/ui/ButtonComponent';
 
 import { Image } from 'astro:assets';
+import desktopImage from '@/images/desktop.png';
 
 import line from '@/images/line.svg?raw';
 import SkillCard from '@/components/SkillCard.astro';
@@ -45,16 +46,21 @@ function getYear(dateString: string) {
 		</div>
 
 		<div class='about'>
-			<h3>Based in the UK</h3>
-			<p>
-				Just a quick intro; I've been programming for {getYear('2021, 07, 13')} years in multiple languages with different frameworks (mostly AstroJS). I'm
-				quite busy with school at the moment, but don't hesitate to contact me.
-			</p>
-			<p>
-				I'm a self-taught developer (proudly a course and bootcamp free developer), but I've been learning a lot since I started. I'm currently learning
-				React, NextJS (soon), and TailwindCSS. Making production-quality websites is a priority for me, like thinking about accessibility and
-				responsiveness as well as performance across devices/browsers.
-			</p>
+			<div class='content'>
+				<h3>Based in the UK</h3>
+				<p>
+					Just a quick intro; I've been programming for {getYear('2021, 07, 13')} years in multiple languages with different frameworks (mostly AstroJS).
+					I'm quite busy with school at the moment, but don't hesitate to contact me.
+				</p>
+				<p>
+					I'm a self-taught developer (proudly a course and bootcamp free developer), but I've been learning a lot since I started. I'm currently
+					learning React, NextJS (soon), and TailwindCSS. Making production-quality websites is a priority for me, like thinking about accessibility
+					and responsiveness as well as performance across devices/browsers.
+				</p>
+			</div>
+			<div class='image'>
+				<Image src={desktopImage} alt='' />
+			</div>
 		</div>
 
 		<div class='skills'>
@@ -277,10 +283,21 @@ function getYear(dateString: string) {
 
 	.about {
 		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		width: 40vw;
-		height: auto;
+		align-items: center;
+		column-gap: 15%;
+
+		.content {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			max-width: 35vw;
+			height: auto;
+		}
+
+		.image {
+			width: auto;
+			height: auto;
+		}
 	}
 
 	.skills {

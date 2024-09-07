@@ -11,4 +11,7 @@ export default defineConfig({
 		webAnalytics: { enabled: true },
 	}),
 	integrations: [react(), tailwind()],
+	server: {
+		port: 3000,
+	},
 });
