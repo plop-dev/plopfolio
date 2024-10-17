@@ -63,7 +63,7 @@ function getYear(dateString: string) {
 			<div class='image'>
 				<!-- <Image src={desktopImage} alt='' /> -->
 				<Image id='desktop-image-glow' src={desktopImageGlow} alt='' />
-				<video autoplay='true'>
+				<video loop>
 					<source src={desktopAnim} type='video/webm' />
 				</video>
 			</div>
@@ -120,22 +120,27 @@ function getYear(dateString: string) {
 
 	const createBlinkingAnimation = (
 		targets: HTMLElement | NodeList | string,
-		options: {
+		optionsParam: {
 			opacityMin?: number;
 			opacityMax?: number;
 			speed?: 'quick' | 'slow';
 			variant?: 'normal' | 'off' | 'breathing';
 			loop?: boolean;
 			autoplay?: boolean;
-		} = {
+		} = {},
+	) => {
+		const defaultOptions = {
 			opacityMin: 0.35,
 			opacityMax: 1,
 			speed: 'slow',
 			variant: 'normal',
 			loop: false,
 			autoplay: false,
-		},
-	) => {
+		};
+
+		const options = { ...defaultOptions, ...optionsParam };
+
+		console.log(`Creating animation for ${targets} with options:`, options);
 		switch (options.variant) {
 			case 'normal':
 				return anime
@@ -209,7 +214,12 @@ function getYear(dateString: string) {
 			duration: 1000,
 			autoplay: true,
 		}).finished.then(() => {
-			const blinkingLine = createBlinkingAnimation('.line > *', { autoplay: true, speed: 'slow', loop: true, variant: 'normal' });
+			const blinkingLine = createBlinkingAnimation('.line > *', {
+				autoplay: true,
+				speed: 'slow',
+				loop: true,
+				variant: 'normal',
+			});
 			blinkingLine.play();
 		});
 
@@ -222,6 +232,7 @@ function getYear(dateString: string) {
 		});
 
 		document.querySelector<HTMLElement>('.title h1 span.linear-gradient-text')!.addEventListener('mouseenter', event => {
+			console.log(blinkingText);
 			blinkingText.restart();
 		});
 		//#endregion
