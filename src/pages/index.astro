@@ -246,6 +246,28 @@ function getYear(dateString: string) {
 		});
 		desktopImageGlowBlink.play();
 		//#endregion
+
+		//#region desktop animation play on viewport
+		const desktopAnimVideo = document.querySelector<HTMLVideoElement>('video');
+		const observer = new IntersectionObserver(
+			entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						desktopAnimVideo?.play();
+					} else {
+						desktopAnimVideo?.pause();
+					}
+				});
+			},
+			{
+				threshold: 0.5,
+			},
+		);
+
+		if (desktopAnimVideo) {
+			observer.observe(desktopAnimVideo);
+		}
+		//#endregion
 	});
 </script>
 
