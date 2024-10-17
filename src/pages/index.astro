@@ -3,6 +3,9 @@ import Layout from '@/layouts/DefaultLayout.astro';
 import { ButtonComponent } from '@/components/ui/ButtonComponent';
 
 import { Image } from 'astro:assets';
+import desktopImage from '@/images/desktop.png';
+import desktopImageGlow from '@/images/desktop-glow.png';
+import desktopAnim from '@/images/desktop-anim.webm';
 
 import line from '@/images/line.svg?raw';
 import SkillCard from '@/components/SkillCard.astro';
@@ -22,7 +25,7 @@ function getYear(dateString: string) {
 }
 ---
 
-<Layout title='Maxime C'>
+<Layout title='Home'>
 	<main>
 		<div class='front-page'>
 			<div class='title'>
@@ -45,17 +48,25 @@ function getYear(dateString: string) {
 		</div>
 
 		<div class='about'>
-			<h3>Based in the UK</h3>
-			<p>
-				Just a quick intro; I've been programming for {getYear('2021, 07, 13')} years in multiple languages with different frameworks (mostly AstroJS). I'm
-				quite busy with school at the moment, but don't hesitate to contact me.
-			</p>
-
-			<p>
-				I'm a self-taught developer (proudly a course and bootcamp free developer), but I've been learning a lot since I started. I'm currently learning
-				React, NextJS (soon), and TailwindCSS. Making production-quality websites is a priority for me, like thinking about accessibility and
-				responsiveness as well as performance across devices/browsers.
-			</p>
+			<div class='content'>
+				<h3>Based in the UK</h3>
+				<p>
+					Just a quick intro; I've been programming for {getYear('2021, 07, 13')} years in multiple languages with different frameworks (mostly AstroJS).
+					I'm quite busy with school at the moment, but don't hesitate to contact me.
+				</p>
+				<p>
+					I'm a self-taught developer (proudly a course and bootcamp free developer), but I've been learning a lot since I started. I'm currently
+					learning React, NextJS (soon), and TailwindCSS. Making production-quality websites is a priority for me, like thinking about accessibility
+					and responsiveness as well as performance across devices/browsers.
+				</p>
+			</div>
+			<div class='image'>
+				<!-- <Image src={desktopImage} alt='' /> -->
+				<Image id='desktop-image-glow' src={desktopImageGlow} alt='' />
+				<video autoplay='true'>
+					<source src={desktopAnim} type='video/webm' />
+				</video>
+			</div>
 		</div>
 
 		<div class='skills'>
@@ -97,6 +108,7 @@ function getYear(dateString: string) {
 						},
 					]}
 					url='https://apple-but-better.vercel.app'
+					,
 				/>
 			</div>
 		</div>
@@ -108,7 +120,16 @@ function getYear(dateString: string) {
 
 	const createBlinkingAnimation = (
 		targets: HTMLElement | NodeList | string,
-		options: { speed?: 'quick' | 'slow'; variant?: 'normal' | 'off'; loop?: boolean; autoplay?: boolean } = {
+		options: {
+			opacityMin?: number;
+			opacityMax?: number;
+			speed?: 'quick' | 'slow';
+			variant?: 'normal' | 'off' | 'breathing';
+			loop?: boolean;
+			autoplay?: boolean;
+		} = {
+			opacityMin: 0.35,
+			opacityMax: 1,
 			speed: 'slow',
 			variant: 'normal',
 			loop: false,
@@ -124,7 +145,7 @@ function getYear(dateString: string) {
 					})
 					.add({
 						targets,
-						opacity: [0.35, 1, 0.35, 1],
+						opacity: [options?.opacityMin, options?.opacityMax, options?.opacityMin, options?.opacityMax],
 						easing: 'linear',
 						duration: 260,
 					})
@@ -132,12 +153,23 @@ function getYear(dateString: string) {
 						duration: options?.speed === 'quick' ? 300 : 1000,
 					});
 
+			case 'breathing':
+				return anime({
+					targets,
+					opacity: [options?.opacityMin, options?.opacityMax, options?.opacityMin],
+					easing: 'linear',
+					duration: options?.speed === 'quick' ? 2500 : 4000,
+					loop: true,
+					direction: 'alternate',
+					options,
+				});
+
 			case 'off':
 				return anime
 					.timeline(options)
 					.add({
 						targets,
-						opacity: [0, 1, 0, 1, 0],
+						opacity: [0, options?.opacityMax, 0, options?.opacityMax, 0],
 						easing: 'linear',
 						duration: 260,
 					})
@@ -159,7 +191,7 @@ function getYear(dateString: string) {
 					})
 					.add({
 						targets,
-						opacity: [0.35, 1, 0.35, 1],
+						opacity: [options?.opacityMin, options?.opacityMax, options?.opacityMin, options?.opacityMax],
 						easing: 'linear',
 						duration: 260,
 					})
@@ -181,6 +213,7 @@ function getYear(dateString: string) {
 			blinkingLine.play();
 		});
 
+		//#region title hover animation
 		const blinkingText = createBlinkingAnimation('.title h1 span.linear-gradient-text:not(span.glow)', {
 			autoplay: false,
 			loop: false,
@@ -191,6 +224,17 @@ function getYear(dateString: string) {
 		document.querySelector<HTMLElement>('.title h1 span.linear-gradient-text')!.addEventListener('mouseenter', event => {
 			blinkingText.restart();
 		});
+		//#endregion
+
+		//#region desktop image glow animation
+		const desktopImageGlowBlink = createBlinkingAnimation('#desktop-image-glow', {
+			autoplay: true,
+			variant: 'breathing',
+			opacityMin: 0.4,
+			opacityMax: 0.7,
+		});
+		desktopImageGlowBlink.play();
+		//#endregion
 	});
 </script>
 
@@ -277,10 +321,34 @@ function getYear(dateString: string) {
 
 	.about {
 		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		width: 40vw;
-		height: auto;
+		align-items: center;
+		column-gap: 15%;
+
+		.content {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			max-width: 35vw;
+			height: auto;
+		}
+
+		.image {
+			width: auto;
+			height: auto;
+			position: relative;
+
+			#desktop-image-glow {
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: -1;
+
+				& ~ :not(&) {
+					position: relative;
+					z-index: 1;
+				}
+			}
+		}
 	}
 
 	.skills {

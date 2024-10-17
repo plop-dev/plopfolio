@@ -1,25 +1,30 @@
 ---
 import { ProjectCarousel } from './ProjectCarousel';
 
-interface Props {
-	title: string;
-	description: string;
-	media: ProjectMedia[];
-	url: string;
-}
+interface Props extends ProjectItem {}
 
-const { title, description, media, url } = Astro.props;
+const { title, description, media, url, position = 'left' } = Astro.props;
 ---
 
 <div class='project'>
 	<div class='content mt-auto mb-auto'>
-		<div class='title'>
-			<a href={url} target='_blank' rel='noopener noreferrer'><h4 class='font-bold'>/{title}</h4></a>
-		</div>
-		<br />
-		<div class='description'>
-			{description}
-		</div>
+		{position === 'left' ? (
+			<div class='title'>
+				<a href={url} target='_blank' rel='noopener noreferrer'><h4 class='font-bold'>/{title}</h4></a>
+			</div>
+			<br />
+			<div class='description'>
+				{description}
+			</div>
+		) : (
+			<div class='description'>
+				{description}
+			</div>
+			<br />
+			<div class='title'>
+				<a href={url} target='_blank' rel='noopener noreferrer'><h4 class='font-bold'>/{title}</h4></a>
+			</div>
+		)}
 	</div>
 	<div class='media'>
 		<ProjectCarousel media={media} url={url} client:load />
