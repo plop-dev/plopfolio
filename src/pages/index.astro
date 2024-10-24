@@ -49,7 +49,7 @@ function getYear(dateString: string) {
 
 		<div class='about'>
 			<div class='content'>
-				<h3>Based in the UK</h3>
+				<h3 class='glow-underline'>Based in the UK</h3>
 				<p>
 					Just a quick intro; I've been programming for {getYear('2021, 07, 13')} years in multiple languages with different frameworks (mostly AstroJS).
 					I'm quite busy with school at the moment, but don't hesitate to contact me.
@@ -63,14 +63,14 @@ function getYear(dateString: string) {
 			<div class='image'>
 				<!-- <Image src={desktopImage} alt='' /> -->
 				<Image id='desktop-image-glow' src={desktopImageGlow} alt='' />
-				<video autoplay='true'>
+				<video loop>
 					<source src={desktopAnim} type='video/webm' />
 				</video>
 			</div>
 		</div>
 
 		<div class='skills'>
-			<h3>Skills</h3>
+			<h3 class='glow-underline'>Skills</h3>
 			<p>Here are some of my skills that I've worked on throughout some of my projects:</p>
 
 			<SkillCard skill='JavaScript' iconName='js' progress='85%' />
@@ -80,7 +80,7 @@ function getYear(dateString: string) {
 		</div>
 
 		<div class='projects'>
-			<h3>Projects</h3>
+			<h3 class='glow-underline'>Projects</h3>
 			<p>
 				I've worked on various different projects throughout the past {getYear('2021, 07, 13')} years. Here are some of my recent/most challenging projects
 				I've done:
@@ -120,22 +120,26 @@ function getYear(dateString: string) {
 
 	const createBlinkingAnimation = (
 		targets: HTMLElement | NodeList | string,
-		options: {
+		optionsParam: {
 			opacityMin?: number;
 			opacityMax?: number;
 			speed?: 'quick' | 'slow';
 			variant?: 'normal' | 'off' | 'breathing';
 			loop?: boolean;
 			autoplay?: boolean;
-		} = {
+		} = {},
+	) => {
+		const defaultOptions = {
 			opacityMin: 0.35,
 			opacityMax: 1,
 			speed: 'slow',
 			variant: 'normal',
 			loop: false,
 			autoplay: false,
-		},
-	) => {
+		};
+
+		const options = { ...defaultOptions, ...optionsParam };
+
 		switch (options.variant) {
 			case 'normal':
 				return anime
@@ -209,7 +213,12 @@ function getYear(dateString: string) {
 			duration: 1000,
 			autoplay: true,
 		}).finished.then(() => {
-			const blinkingLine = createBlinkingAnimation('.line > *', { autoplay: true, speed: 'slow', loop: true, variant: 'normal' });
+			const blinkingLine = createBlinkingAnimation('.line > *', {
+				autoplay: true,
+				speed: 'slow',
+				loop: true,
+				variant: 'normal',
+			});
 			blinkingLine.play();
 		});
 
@@ -222,6 +231,7 @@ function getYear(dateString: string) {
 		});
 
 		document.querySelector<HTMLElement>('.title h1 span.linear-gradient-text')!.addEventListener('mouseenter', event => {
+			console.log(blinkingText);
 			blinkingText.restart();
 		});
 		//#endregion
@@ -234,6 +244,28 @@ function getYear(dateString: string) {
 			opacityMax: 0.7,
 		});
 		desktopImageGlowBlink.play();
+		//#endregion
+
+		//#region desktop animation play on viewport
+		const desktopAnimVideo = document.querySelector<HTMLVideoElement>('video');
+		const observer = new IntersectionObserver(
+			entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						desktopAnimVideo?.play();
+					} else {
+						desktopAnimVideo?.pause();
+					}
+				});
+			},
+			{
+				threshold: 0.5,
+			},
+		);
+
+		if (desktopAnimVideo) {
+			observer.observe(desktopAnimVideo);
+		}
 		//#endregion
 	});
 </script>
