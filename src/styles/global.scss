@@ -90,6 +90,7 @@ small {
 body {
     overflow-x: hidden;
     background-color: var(--_background);
+    transition: background-color var(--transition);
 }
 
 main {
