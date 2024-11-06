@@ -1,9 +1,11 @@
 ---
+import { marked } from 'marked';
 import { ProjectCarousel } from './ProjectCarousel';
 
 interface Props extends ProjectItem {}
 
 const { title, description, media, url, position = 'left' } = Astro.props;
+const descriptionParsed = marked.parse(description);
 ---
 
 <div class='project'>
@@ -14,11 +16,11 @@ const { title, description, media, url, position = 'left' } = Astro.props;
 			</div>
 			<br />
 			<div class='description'>
-				{description}
+				<Fragment set:html={descriptionParsed}></Fragment>
 			</div>
 		) : (
 			<div class='description'>
-				{description}
+				<Fragment set:html={descriptionParsed}></Fragment>
 			</div>
 			<br />
 			<div class='title'>
@@ -30,14 +32,15 @@ const { title, description, media, url, position = 'left' } = Astro.props;
 		<ProjectCarousel media={media} url={url} client:load />
 	</div>
 
-	<style lang='scss'>
-		.project {
-			border-radius: var(--radius);
-			padding: 2rem;
-			display: grid;
-			grid-template-columns: 2fr 3fr;
-			grid-template-rows: auto;
-			column-gap: 8rem;
-		}
-	</style>
 </div>
+
+<style lang='scss'>
+	.project {
+		border-radius: var(--radius);
+		padding: 2rem;
+		display: grid;
+		grid-template-columns: 2fr 3fr;
+		grid-template-rows: auto;
+		column-gap: 8rem;
+	}
+</style>

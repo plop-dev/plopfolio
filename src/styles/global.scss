@@ -112,9 +112,30 @@ p {
     -webkit-text-fill-color: transparent;
 }
 
-a.normal {
+a.normal,
+a {
     text-decoration: none;
     color: var(--_accent);
+
+    position: relative;
+    display: inline-block;
+    transition: color var(--transition);
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.25rem;
+        width: 0%;
+        height: 0.25rem;
+        background: var(--linearPrimaryAccent);
+        transition: width var(--transition);
+        border-radius: var(--radius);
+    }
+
+    &:hover::after {
+        width: 100%;
+    }
 }
 
 .scroll-anim {
