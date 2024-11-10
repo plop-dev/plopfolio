@@ -35,26 +35,26 @@ const { skill, iconName, progress } = Astro.props;
 			scrollTrigger: {
 				trigger: bar,
 				scrub: 1.5,
-				start: 'top 80%',
-				end: 'bottom 50%',
+				start: 'top 100%',
+				end: 'bottom 80%',
 			},
 		});
 	});
 </script>
 
-<style lang='scss' define:vars={{ progress }}>
+<style lang='scss'>
 	.item-wrapper {
-		margin-top: 2rem;
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
 		align-items: center;
-		width: 100%;
+		width: 80%;
+		margin: 2rem auto 0 auto;
 
 		.item {
 			display: grid;
 			gap: 2rem;
-			width: 60%;
+			width: 100%;
 			grid-template-columns: 0.25fr 1fr 5fr;
 			grid-template-rows: 1fr;
 			border-radius: var(--radius);
@@ -81,13 +81,21 @@ const { skill, iconName, progress } = Astro.props;
 					top: 0;
 					left: 0;
 					position: absolute;
-					// width: var(--progress);
 					width: 0;
 					height: 100%;
 					background-color: var(--_primary);
 					border-radius: var(--radius);
+					box-shadow: var(--box-shadow);
 				}
 			}
+		}
+	}
+</style>
+
+<style lang='scss' is:global>
+	html:not(.dark) {
+		.item-wrapper .item .logo {
+			filter: brightness(0);
 		}
 	}
 </style>

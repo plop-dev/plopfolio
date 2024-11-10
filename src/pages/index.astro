@@ -63,7 +63,7 @@ function getYear(dateString: string) {
 			<div class='image'>
 				<!-- <Image src={desktopImage} alt='' /> -->
 				<Image id='desktop-image-glow' src={desktopImageGlow} alt='' />
-				<video loop>
+				<video loop muted>
 					<source src={desktopAnim} type='video/webm' />
 				</video>
 			</div>
@@ -108,6 +108,30 @@ function getYear(dateString: string) {
 						},
 					]}
 					url='https://apple-but-better.vercel.app'
+					,
+				/>
+				<ProjectItem
+					title='plopfolio'
+					description='\n(This website!) Proudly made using AstroJS and shadcn/ui to make a portfolio website to show some of my skills, projects, and just things about me. Check the website out on [GitHub](https://github.com/plop-dev/plopfolio) :)'
+					media={[
+						{
+							src: '/images/projects/plopfolio/home.png',
+							alt: '',
+							type: 'image',
+						},
+						{
+							src: '/images/projects/plopfolio/about.png',
+							alt: '',
+							type: 'image',
+						},
+						{
+							src: '/images/projects/plopfolio/skills.png',
+							alt: '',
+							type: 'image',
+						},
+					]}
+					url='#top'
+					newTab={false}
 					,
 				/>
 			</div>
@@ -369,6 +393,10 @@ function getYear(dateString: string) {
 			height: auto;
 			position: relative;
 
+			video {
+				filter: contrast(1.4) saturate(1.2);
+			}
+
 			#desktop-image-glow {
 				position: absolute;
 				top: 0;
@@ -408,7 +436,7 @@ function getYear(dateString: string) {
 			display: flex;
 			flex-direction: column;
 			row-gap: 4rem;
-			margin: 4rem auto 0 auto;
+			margin-top: 4rem;
 			width: 85%;
 		}
 	}
