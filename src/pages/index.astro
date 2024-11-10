@@ -115,22 +115,23 @@ function getYear(dateString: string) {
 					description='\n(This website!) Proudly made using AstroJS and shadcn/ui to make a portfolio website to show some of my skills, projects, and just things about me. Check the website out on [GitHub](https://github.com/plop-dev/plopfolio) :)'
 					media={[
 						{
-							src: '/images/projects/apple-but-better/front.png',
+							src: '/images/projects/plopfolio/home.png',
 							alt: '',
 							type: 'image',
 						},
 						{
-							src: '/images/projects/apple-but-better/carousel.png',
+							src: '/images/projects/plopfolio/about.png',
 							alt: '',
 							type: 'image',
 						},
 						{
-							src: '/images/projects/apple-but-better/camera.png',
+							src: '/images/projects/plopfolio/skills.png',
 							alt: '',
 							type: 'image',
 						},
 					]}
-					url='https://maximec.dev'
+					url='#top'
+					newTab={false}
 					,
 				/>
 			</div>
@@ -392,6 +393,10 @@ function getYear(dateString: string) {
 			height: auto;
 			position: relative;
 
+			video {
+				filter: contrast(1.4) saturate(1.2);
+			}
+
 			#desktop-image-glow {
 				position: absolute;
 				top: 0;
@@ -431,7 +436,7 @@ function getYear(dateString: string) {
 			display: flex;
 			flex-direction: column;
 			row-gap: 4rem;
-			margin: 4rem auto 0 auto;
+			margin-top: 4rem;
 			width: 85%;
 		}
 	}

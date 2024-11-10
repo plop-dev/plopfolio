@@ -42,19 +42,19 @@ const { skill, iconName, progress } = Astro.props;
 	});
 </script>
 
-<style lang='scss' define:vars={{ progress }}>
+<style lang='scss'>
 	.item-wrapper {
-		margin-top: 2rem;
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
 		align-items: center;
-		width: 100%;
+		width: 80%;
+		margin: 2rem auto 0 auto;
 
 		.item {
 			display: grid;
 			gap: 2rem;
-			width: 60%;
+			width: 100%;
 			grid-template-columns: 0.25fr 1fr 5fr;
 			grid-template-rows: 1fr;
 			border-radius: var(--radius);

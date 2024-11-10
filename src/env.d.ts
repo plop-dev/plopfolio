@@ -6,7 +6,8 @@ interface ProjectItem {
 	description: string;
 	media: ProjectMedia[];
 	url: string;
-	position?: 'right' | 'left';
+	position?: 'right' | 'left' = 'left';
+	newTab?: boolean = true;
 }
 
 interface ProjectMedia {

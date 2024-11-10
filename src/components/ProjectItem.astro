@@ -4,7 +4,7 @@ import { ProjectCarousel } from './ProjectCarousel';
 
 interface Props extends ProjectItem {}
 
-const { title, description, media, url, position = 'left' } = Astro.props;
+const { title, description, media, url, position = "left", newTab = true } = Astro.props;
 const descriptionParsed = marked.parse(description);
 ---
 
@@ -12,7 +12,7 @@ const descriptionParsed = marked.parse(description);
 	<div class='content mt-auto mb-auto'>
 		{position === 'left' ? (
 			<div class='title'>
-				<a href={url} target='_blank' rel='noopener noreferrer'><h4 class='font-bold'>/{title}</h4></a>
+				<a href={url} target={newTab ? '_blank' : ''} rel={newTab ? 'noopener noreferrer' : ''}><h4 class='font-bold'>/{title}</h4></a>
 			</div>
 			<br />
 			<div class='description'>
@@ -24,14 +24,13 @@ const descriptionParsed = marked.parse(description);
 			</div>
 			<br />
 			<div class='title'>
-				<a href={url} target='_blank' rel='noopener noreferrer'><h4 class='font-bold'>/{title}</h4></a>
+				<a href={url} target={newTab ? '_blank' : ''} rel={newTab ? 'noopener noreferrer' : ''}><h4 class='font-bold'>/{title}</h4></a>
 			</div>
 		)}
 	</div>
 	<div class='media'>
 		<ProjectCarousel media={media} url={url} client:load />
 	</div>
-
 </div>
 
 <style lang='scss'>

@@ -9,7 +9,7 @@ export function ProjectCarousel({ media, url }) {
 				{media.map(media => {
 					return (
 						<CarouselItem key={Math.random()}>
-							<a href={url} target='_blank' rel='noopener noreferrer'>
+							<a className='ghost' href={url} target='_blank' rel='noopener noreferrer'>
 								<img className='rounded-lg' src={media.src} alt={media.alt} />
 							</a>
 						</CarouselItem>

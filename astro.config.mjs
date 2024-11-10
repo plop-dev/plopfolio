@@ -14,4 +14,13 @@ export default defineConfig({
 	server: {
 		port: 3000,
 	},
+	vite: {
+		css: {
+			preprocessorOptions: {
+				scss: {
+					api: 'modern-compiler', // or "modern"
+				},
+			},
+		},
+	},
 });
