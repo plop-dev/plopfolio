@@ -99,9 +99,6 @@
 
     --transition: 0.3s ease;
     --box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
-
-    --glowX: 150px;
-    --glowY: 150px;
 }
 :root.dark {
     --_text: #dadada;
@@ -142,11 +139,11 @@ body {
     &::before {
         content: "";
         position: absolute;
-        top: var(--glowY); /* Adjust position to center the glow within #bg */
-        left: var(--glowX);
-        width: 150px; /* Adjust size to make glow smaller than #bg */
+        // top: var(--glowY);
+        // left: var(--glowX);
+        inset: var(--glowInset);
+        width: 150px;
         height: 150px;
-        inset: 0;
         background: radial-gradient(circle, var(--_primary) 25%, transparent 100%);
         filter: blur(25px);
         mix-blend-mode: screen;

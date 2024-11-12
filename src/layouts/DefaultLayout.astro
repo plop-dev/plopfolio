@@ -79,15 +79,17 @@ const { title, viewTransitions } = Astro.props;
 	});
 	gsap.ticker.lagSmoothing(0);
 
-	const bg = document.getElementById('bg');
-
 	window.addEventListener('mousemove', event => {
-		const xPos = event.clientX / innerWidth - 0.5;
-		const yPos = event.clientY / innerHeight - 0.5;
+		const xOffset = 75 / innerWidth;
+		const xPos = (event.clientX / innerWidth - xOffset) * 100;
 
-		gsap.to(bg, {
-			'--glowX': xPos * 1,
-			'--glowY': -yPos * 1,
+		const yOffset = 75 / innerHeight;
+		const yPos = (event.clientY / innerHeight - yOffset) * 100;
+
+		gsap.to(document.documentElement, {
+			// '--glowX': `${xPos * 100}%`,
+			// '--glowY': `${-yPos * 100}%`,
+			'--glowInset': `${yPos}% ${xPos}%`,
 			ease: 'power4.out',
 		});
 	});
