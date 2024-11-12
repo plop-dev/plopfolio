@@ -80,12 +80,13 @@
     --_text: #272727;
     --_text-faint: #4b4b4b;
     --_background: #e6e6e6;
-    --_primary: #3fd573;
+    --_primary: #3cc56c;
     --_primary-faint: #31a359c7;
     --_secondary: #dbdbdb;
     --_accent: #36e4de;
 
     --_grey: #b4b4b4;
+    --_grey-faint: #b4b4b491;
 
     --linearPrimarySecondary: linear-gradient(270deg, var(--_primary), var(--_secondary));
     --linearPrimaryAccent: linear-gradient(270deg, var(--_primary), var(--_accent));
@@ -98,6 +99,9 @@
 
     --transition: 0.3s ease;
     --box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+
+    --glowX: 150px;
+    --glowY: 150px;
 }
 :root.dark {
     --_text: #dadada;
@@ -109,6 +113,7 @@
     --_accent: #00c2bb;
 
     --_grey: #3d3d3d;
+    --_grey-faint: #3d3d3d50;
 
     color-scheme: dark;
 }
@@ -116,6 +121,36 @@
 body {
     font-family: "Fira Code";
     font-weight: 400;
+}
+
+#bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    background-color: transparent;
+    background-image: linear-gradient(var(--_grey-faint) 1.5px, transparent 1px),
+        linear-gradient(90deg, var(--_grey-faint) 1.5px, transparent 1px);
+    background-size: 30px 30px;
+
+    mask-image: linear-gradient(var(--_grey-faint) 1.5px, transparent 1px),
+        linear-gradient(90deg, var(--_grey-faint) 1.5px, transparent 1px);
+    mask-size: 30px 30px;
+    mask-composite: add;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: var(--glowY); /* Adjust position to center the glow within #bg */
+        left: var(--glowX);
+        width: 150px; /* Adjust size to make glow smaller than #bg */
+        height: 150px;
+        inset: 0;
+        background: radial-gradient(circle, var(--_primary) 25%, transparent 100%);
+        filter: blur(25px);
+        mix-blend-mode: screen;
+    }
 }
 
 h1,

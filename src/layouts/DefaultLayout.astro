@@ -2,9 +2,14 @@
 import SpeedInsights from '@vercel/speed-insights/astro';
 
 import { ViewTransitions } from 'astro:transitions';
+import Navbar from '@/components/Navbar.astro';
+
+import 'lenis/dist/lenis.css';
 import '@/styles/shadcnui.css';
 import '@/styles/global.scss';
-import Navbar from '@/components/Navbar.astro';
+
+import grid from '@/images/grid.svg';
+import { Image } from 'astro:assets';
 
 interface Props {
 	title: string;
@@ -26,6 +31,9 @@ const { title, viewTransitions } = Astro.props;
 		<ViewTransitions />
 	</head>
 	<body>
+		<!-- <Image src={grid} alt='' id='bg' /> -->
+		<div id='bg'></div>
+
 		<SpeedInsights />
 		<Navbar transition:persist />
 
@@ -55,3 +63,32 @@ const { title, viewTransitions } = Astro.props;
 		</script>
 	</body>
 </html>
+
+<script>
+	import Lenis from 'lenis';
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/all';
+
+	const lenis = new Lenis({
+		autoRaf: true,
+	});
+
+	lenis.on('scroll', ScrollTrigger.update);
+	gsap.ticker.add(time => {
+		lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+	});
+	gsap.ticker.lagSmoothing(0);
+
+	const bg = document.getElementById('bg');
+
+	window.addEventListener('mousemove', event => {
+		const xPos = event.clientX / innerWidth - 0.5;
+		const yPos = event.clientY / innerHeight - 0.5;
+
+		gsap.to(bg, {
+			'--glowX': xPos * 1,
+			'--glowY': -yPos * 1,
+			ease: 'power4.out',
+		});
+	});
+</script>
