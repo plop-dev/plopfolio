@@ -127,20 +127,18 @@ body {
     pointer-events: none;
 
     background-color: transparent;
-    background-image: linear-gradient(var(--_grey-faint) 1.5px, transparent 1px),
-        linear-gradient(90deg, var(--_grey-faint) 1.5px, transparent 1px);
+    background-image: linear-gradient(var(--_grey-faint) 2px, transparent 1px),
+        linear-gradient(90deg, var(--_grey-faint) 2px, transparent 1px);
     background-size: 30px 30px;
 
-    mask-image: linear-gradient(var(--_grey-faint) 1.5px, transparent 1px),
-        linear-gradient(90deg, var(--_grey-faint) 1.5px, transparent 1px);
+    mask-image: linear-gradient(var(--_grey-faint) 2px, transparent 1px),
+        linear-gradient(90deg, var(--_grey-faint) 2px, transparent 1px);
     mask-size: 30px 30px;
     mask-composite: add;
 
     &::before {
         content: "";
         position: absolute;
-        // top: var(--glowY);
-        // left: var(--glowX);
         inset: var(--glowInset);
         width: 150px;
         height: 150px;
